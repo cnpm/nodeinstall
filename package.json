@@ -1,4 +1,40 @@
 {
   "name": "nodeinstall",
-  "version": "0.0.0"
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {},
+  "devDependencies": {
+    "autod": "^2",
+    "cheerio": "^0.22.0",
+    "egg-bin": "^1",
+    "egg-ci": "^1",
+    "egg-mock": "^0.0.4",
+    "eslint": "^3",
+    "eslint-config-egg": "^3",
+    "intelli-espower-loader": "^1",
+    "power-assert": "^1.4.1",
+    "supertest": "^2"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "egg-bin dev",
+    "test": "npm run lint && npm run test-local",
+    "test-local": "egg-bin test -r intelli-espower-loader",
+    "cov": "egg-bin cov -r intelli-espower-loader",
+    "lint": "eslint --ext js .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod"
+  },
+  "ci": {
+    "version": "4, 6"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "popomore <sakura9515@gmail.com>",
+  "license": "MIT"
 }
