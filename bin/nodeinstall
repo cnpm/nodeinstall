@@ -1,0 +1,75 @@
+#!/usr/bin/env node
+
+'use strict';
+
+const co = require('co');
+const path = require('path');
+const program = require('commander');
+const installNode = require('..').installNode;
+const installAlinode = require('..').installAlinode;
+const installNsolid = require('..').installNsolid;
+
+program
+  .option('--install-node [version]')
+  .option('--install-alinode [version]')
+  .option('--install-nsolid [version]')
+  .option('--dist-url [url]')
+  .parse(process.argv);
+
+co(function* () {
+  const options = getOptions();
+  if (!options) {
+    return;
+  }
+
+  options.distUrl = program.distUrl;
+  options.cwd = process.cwd();
+  switch (options.type) {
+    case 'node':
+      yield installNode(options);
+      break;
+    case 'alinode':
+      yield installAlinode(options);
+      break;
+    case 'nsolid':
+      yield installNsolid(options);
+      break;
+    default:
+  }
+}).catch(err => {
+  console.error(err.stack);
+});
+
+function getOptions() {
+  const types = [ 'node', 'alinode', 'nsolid' ];
+  for (const type of types) {
+    const key = `install${capFirst(type)}`;
+    if (program[key]) {
+      return {
+        type,
+        version: program[key],
+      };
+    }
+  }
+
+  let engines;
+  try {
+    engines = require(path.join(process.cwd(), 'package.json')).engines || {};
+  } catch (e) {
+    return;
+  }
+
+  for (const type of types) {
+    const key = `install-${type}`;
+    if (engines[key]) {
+      return {
+        type,
+        version: engines[key],
+      };
+    }
+  }
+}
+
+function capFirst(str) {
+  return str.substring(0, 1).upperCase() + str.substring(1);
+}
