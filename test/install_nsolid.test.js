@@ -5,13 +5,14 @@ const path = require('path');
 const assert = require('power-assert');
 const rimraf = require('rimraf');
 const execSync = require('child_process').execSync;
-const installAlinode = require('../lib/install_alinode');
+const installNsolid = require('../lib/install_nsolid');
 const config = require('../lib/config');
 
 const fixtures = path.join(__dirname, 'fixtures');
-const distUrl = config.alinodeDistUrl;
+const distUrl = config.nsolidDistUrl;
 
-describe('test/install_alinode.test.js', function() {
+
+describe.only('test/install_nsolid.test.js', function() {
   let cwd;
   beforeEach(function() {
     if (cwd) {
@@ -24,12 +25,12 @@ describe('test/install_alinode.test.js', function() {
     }
   });
 
-  it('should install-node', function* () {
-    cwd = path.join(fixtures, 'install-alinode');
-    yield installAlinode({
+  it('should install-nsolid', function* () {
+    cwd = path.join(fixtures, 'install-nsolid');
+    yield installNsolid({
       cwd,
       distUrl,
-      version: '1.4.0',
+      version: '1.3.2',
     });
 
     assert(fs.existsSync(path.join(cwd, 'node_modules')));
@@ -39,10 +40,10 @@ describe('test/install_alinode.test.js', function() {
     assert(fs.existsSync(nodeBinPath));
     assert(fs.existsSync(path.join(cwd, 'node_modules/.bin/npm')));
     assert(fs.existsSync(nodeDir));
-    assert(fs.realpathSync(nodeBinPath) === path.join(nodeDir, 'bin/node'));
+    assert(fs.realpathSync(nodeBinPath) === path.join(nodeDir, 'bin/nsolid'));
     assert(fs.realpathSync(npmBinPath) === path.join(nodeDir, 'lib/node_modules/npm/bin/npm-cli.js'));
-    assert(execSync(`${nodeBinPath} -p 'process.versions.alinode'`).toString() === '1.4.0\n');
-    assert(execSync(`${npmBinPath} -v`).toString() === '2.14.12\n');
+    assert(execSync(`${nodeBinPath} -p 'process.versions.nsolid'`).toString() === '1.3.2\n');
+    assert(execSync(`${npmBinPath} -v`).toString() === '2.15.5\n');
   });
 
 });

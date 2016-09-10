@@ -11,7 +11,7 @@ const config = require('../lib/config');
 
 const tnpm = path.join(__dirname, '..', 'bin', 'tnpm.js');
 const fixtures = path.join(__dirname, 'fixtures');
-const distUrl = config.nodeDistUrlMirror;
+const distUrl = config.nodeDistUrl;
 
 
 describe('test/install_node.test.js', function() {
