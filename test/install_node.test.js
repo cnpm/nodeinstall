@@ -2,9 +2,10 @@
 
 const fs = require('fs');
 const path = require('path');
-const assert = require('assert');
+const assert = require('power-assert');
 const rimraf = require('rimraf');
 const coffee = require('coffee');
+const execSync = require('child_process').execSync;
 const installNode = require('../lib/install_node');
 
 const tnpm = path.join(__dirname, '..', 'bin', 'tnpm.js');
@@ -23,15 +24,28 @@ describe('test/install_node.test.js', function() {
     }
   });
 
-  it.only('should install-node', function* () {
-    cwd = path.join(fixtures, 'install-tnpm');
+  it('should install-node', function* () {
+    cwd = path.join(fixtures, 'install-node');
     yield installNode({
+      cwd,
       version: '4.0.0',
       distUrl: 'https://npm.taobao.org/mirrors/node',
     });
+
+    assert(fs.existsSync(path.join(cwd, 'node_modules')));
+    const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');
+    const npmBinPath = path.join(cwd, 'node_modules/.bin/npm');
+    const nodeDir = path.join(cwd, 'node_modules/node');
+    assert(fs.existsSync(nodeBinPath));
+    assert(fs.existsSync(path.join(cwd, 'node_modules/.bin/npm')));
+    assert(fs.existsSync(nodeDir));
+    assert(fs.realpathSync(nodeBinPath) === path.join(nodeDir, 'bin/node'));
+    assert(fs.realpathSync(npmBinPath) === path.join(nodeDir, 'lib/node_modules/npm/bin/npm-cli.js'));
+    assert(execSync(`${nodeBinPath} -v`).toString() === 'v4.0.0\n');
+    assert(execSync(`${npmBinPath} -v`).toString() === '2.14.2\n');
   });
 
-  it('should work with rc version install-node=0.10.41-rc.1', function(done) {
+  it.skip('should work with rc version install-node=0.10.41-rc.1', function(done) {
     cwd = path.join(fixtures, 'node-0.10');
 
     coffee
@@ -48,7 +62,7 @@ describe('test/install_node.test.js', function() {
     });
   });
 
-  it('should work with install-node=4.3.0', function(done) {
+  it.skip('should work with install-node=4.3.0', function(done) {
     cwd = path.join(fixtures, 'node-4');
 
     coffee
@@ -65,7 +79,7 @@ describe('test/install_node.test.js', function() {
     });
   });
 
-  it('should work with install-node=4', function(done) {
+  it.skip('should work with install-node=4', function(done) {
     cwd = path.join(fixtures, 'node-4');
 
     coffee
@@ -88,7 +102,7 @@ describe('test/install_node.test.js', function() {
     });
   });
 
-  it('should work with install-node=5.10', function(done) {
+  it.skip('should work with install-node=5.10', function(done) {
     cwd = path.join(fixtures, 'node-4');
 
     coffee
@@ -105,7 +119,7 @@ describe('test/install_node.test.js', function() {
     });
   });
 
-  it('should work with install-alinode=1.4.0', function(done) {
+  it.skip('should work with install-alinode=1.4.0', function(done) {
     cwd = path.join(fixtures, 'node-4');
 
     coffee
@@ -122,7 +136,7 @@ describe('test/install_node.test.js', function() {
     });
   });
 
-  it('should work with install-alinode=1', function(done) {
+  it.skip('should work with install-alinode=1', function(done) {
     cwd = path.join(fixtures, 'node-4');
 
     coffee
@@ -139,7 +153,7 @@ describe('test/install_node.test.js', function() {
     });
   });
 
-  it('should install alinode-iojs: iojs-1', function(done) {
+  it.skip('should install alinode-iojs: iojs-1', function(done) {
     cwd = path.join(fixtures, 'iojs-1');
 
     coffee
@@ -149,7 +163,7 @@ describe('test/install_node.test.js', function() {
     .end(done);
   });
 
-  it('should install alinode-iojs: iojs-2', function(done) {
+  it.skip('should install alinode-iojs: iojs-2', function(done) {
     cwd = path.join(fixtures, 'iojs-2');
 
     coffee
@@ -159,7 +173,7 @@ describe('test/install_node.test.js', function() {
     .end(done);
   });
 
-  it('should install alinode-iojs: iojs-3', function(done) {
+  it.skip('should install alinode-iojs: iojs-3', function(done) {
     cwd = path.join(fixtures, 'iojs-3');
 
     coffee
@@ -169,7 +183,7 @@ describe('test/install_node.test.js', function() {
     .end(done);
   });
 
-  it('should install install-node: node-4.1.1 show SECURITY tips', function(done) {
+  it.skip('should install install-node: node-4.1.1 show SECURITY tips', function(done) {
     cwd = path.join(fixtures, 'node-4.1.1-security-tips');
 
     coffee
@@ -179,7 +193,7 @@ describe('test/install_node.test.js', function() {
     .end(done);
   });
 
-  it('should install install-node: node-4', function(done) {
+  it.skip('should install install-node: node-4', function(done) {
     cwd = path.join(fixtures, 'node-4');
 
     coffee
@@ -189,7 +203,7 @@ describe('test/install_node.test.js', function() {
     .end(done);
   });
 
-  it('should install alinode: alinode-1', function(done) {
+  it.skip('should install alinode: alinode-1', function(done) {
     cwd = path.join(fixtures, 'alinode-1');
 
     coffee
@@ -199,7 +213,7 @@ describe('test/install_node.test.js', function() {
     .end(done);
   });
 
-  it('should install alinode: alinode-0.12.7', function(done) {
+  it.skip('should install alinode: alinode-0.12.7', function(done) {
     cwd = path.join(fixtures, 'alinode-0.12.7');
 
     coffee
@@ -209,7 +223,7 @@ describe('test/install_node.test.js', function() {
     .end(done);
   });
 
-  it('should install alinode-iojs 2.5 from within a sub dir', function(done) {
+  it.skip('should install alinode-iojs 2.5 from within a sub dir', function(done) {
     cwd = path.join(fixtures, 'from-within-sub-dir', 'subdir');
 
     coffee
@@ -230,7 +244,7 @@ describe('test/install_node.test.js', function() {
     .end(done);
   });
 
-  it('should install alinode-iojs wrong version', function(done) {
+  it.skip('should install alinode-iojs wrong version', function(done) {
     cwd = path.join(fixtures, 'wrong_version');
 
     coffee
@@ -240,7 +254,7 @@ describe('test/install_node.test.js', function() {
     .end(done);
   });
 
-  it('should install alinode-iojs not exists version', function(done) {
+  it.skip('should install alinode-iojs not exists version', function(done) {
     cwd = path.join(fixtures, 'not_exists_version');
 
     coffee
@@ -250,7 +264,7 @@ describe('test/install_node.test.js', function() {
     .end(done);
   });
 
-  it('should install install-node not exists iojs version', function(done) {
+  it.skip('should install install-node not exists iojs version', function(done) {
     cwd = path.join(fixtures, 'not_exist_iojs_version');
 
     coffee
@@ -260,7 +274,7 @@ describe('test/install_node.test.js', function() {
     .end(done);
   });
 
-  it('should install alinode not exists version', function(done) {
+  it.skip('should install alinode not exists version', function(done) {
     cwd = path.join(fixtures, 'not_exists_alinode_version');
 
     coffee
