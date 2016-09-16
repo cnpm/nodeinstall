@@ -5,11 +5,11 @@ const path = require('path');
 const assert = require('power-assert');
 const rimraf = require('rimraf');
 const execSync = require('child_process').execSync;
-const installAlinode = require('../lib/install_alinode');
-const config = require('../lib/config');
+const coffee = require('coffee');
+const nodeinstall = path.join(__dirname, '../bin/nodeinstall');
+
 
 const fixtures = path.join(__dirname, 'fixtures');
-const distUrl = config.alinodeDistUrl;
 
 describe('test/install_alinode.test.js', function() {
   let cwd;
@@ -26,11 +26,12 @@ describe('test/install_alinode.test.js', function() {
 
   it('should install-node', function* () {
     cwd = path.join(fixtures, 'install-alinode');
-    yield installAlinode({
-      cwd,
-      distUrl,
-      version: '1.4.0',
-    });
+
+    yield coffee
+      .fork(nodeinstall, [ '--install-alinode', '1.4.0' ], { cwd })
+      .debug()
+      .expect('code', 0)
+      .end();
 
     assert(fs.existsSync(path.join(cwd, 'node_modules')));
     const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');

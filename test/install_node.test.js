@@ -6,13 +6,10 @@ const assert = require('power-assert');
 const rimraf = require('rimraf');
 const coffee = require('coffee');
 const execSync = require('child_process').execSync;
-const installNode = require('../lib/install_node');
-const config = require('../lib/config');
 
 const tnpm = path.join(__dirname, '..', 'bin', 'tnpm.js');
 const fixtures = path.join(__dirname, 'fixtures');
-const distUrl = config.nodeDistUrl;
-
+const nodeinstall = path.join(__dirname, '../bin/nodeinstall');
 
 describe('test/install_node.test.js', function() {
   let cwd;
@@ -27,13 +24,13 @@ describe('test/install_node.test.js', function() {
     }
   });
 
-  it('should install-node', function* () {
+  it('should install node', function* () {
     cwd = path.join(fixtures, 'install-node');
-    yield installNode({
-      cwd,
-      distUrl,
-      version: '4.0.0',
-    });
+    yield coffee
+      .fork(nodeinstall, [ '4.0.0' ], { cwd })
+      .debug()
+      .expect('code', 0)
+      .end();
 
     assert(fs.existsSync(path.join(cwd, 'node_modules')));
     const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');

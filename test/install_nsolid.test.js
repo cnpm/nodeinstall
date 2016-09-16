@@ -5,14 +5,13 @@ const path = require('path');
 const assert = require('power-assert');
 const rimraf = require('rimraf');
 const execSync = require('child_process').execSync;
-const installNsolid = require('../lib/install_nsolid');
-const config = require('../lib/config');
+const coffee = require('coffee');
 
 const fixtures = path.join(__dirname, 'fixtures');
-const distUrl = config.nsolidDistUrl;
+const nodeinstall = path.join(__dirname, '../bin/nodeinstall');
 
 
-describe.only('test/install_nsolid.test.js', function() {
+describe('test/install_nsolid.test.js', function() {
   let cwd;
   beforeEach(function() {
     if (cwd) {
@@ -27,11 +26,12 @@ describe.only('test/install_nsolid.test.js', function() {
 
   it('should install-nsolid', function* () {
     cwd = path.join(fixtures, 'install-nsolid');
-    yield installNsolid({
-      cwd,
-      distUrl,
-      version: '1.3.2',
-    });
+
+    yield coffee
+      .fork(nodeinstall, [ '--install-nsolid', '1.3.2' ], { cwd })
+      .debug()
+      .expect('code', 0)
+      .end();
 
     assert(fs.existsSync(path.join(cwd, 'node_modules')));
     const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');

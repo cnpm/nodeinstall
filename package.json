@@ -47,6 +47,9 @@
     "type": "git",
     "url": ""
   },
+  "bin": {
+    "nodeinstall": "bin/nodeinstall.js"
+  },
   "author": "popomore <sakura9515@gmail.com>",
   "license": "MIT"
 }

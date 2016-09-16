@@ -59,4 +59,6 @@ describe('test/version.test.js', () => {
       assert(v === '1.5.6');
     });
   });
+
+  describe('getSafeVersion');
 });

@@ -1,7 +1,6 @@
 'use strict';
 
-const co = require('co');
-exports.install = co(require('./lib/install'));
-exports.installNode = co(require('./lib/install_node'));
-exports.installAlinode = co(require('./lib/install_alinode'));
-exports.installNsolid = co(require('./lib/install_nsolid'));
+exports.Installer = require('./lib/installer');
+exports.NodeInstaller = require('./lib/node_installer');
+exports.AlinodeInstaller = require('./lib/alinode_installer');
+exports.NSolidInstaller = require('./lib/nsolid_installer');
