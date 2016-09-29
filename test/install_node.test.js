@@ -45,6 +45,26 @@ describe('test/install_node.test.js', function() {
     assert(execSync(`${npmBinPath} -v`).toString() === '2.14.2\n');
   });
 
+  it('should install noderc', function* () {
+    cwd = path.join(fixtures, 'install-node');
+    yield coffee
+      .fork(nodeinstall, [ '--install-noderc', '6.0.0-rc.3' ], { cwd })
+      .debug()
+      .expect('code', 0)
+      .end();
+
+    assert(fs.existsSync(path.join(cwd, 'node_modules')));
+    const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');
+    const npmBinPath = path.join(cwd, 'node_modules/.bin/npm');
+    const nodeDir = path.join(cwd, 'node_modules/node');
+    assert(fs.existsSync(nodeBinPath));
+    assert(fs.existsSync(path.join(cwd, 'node_modules/.bin/npm')));
+    assert(fs.existsSync(nodeDir));
+    assert(fs.realpathSync(nodeBinPath) === path.join(nodeDir, 'bin/node'));
+    assert(fs.realpathSync(npmBinPath) === path.join(nodeDir, 'lib/node_modules/npm/bin/npm-cli.js'));
+    assert(execSync(`${nodeBinPath} -v`).toString() === 'v6.0.0-rc.3\n');
+  });
+
   it.skip('should work with rc version install-node=0.10.41-rc.1', function(done) {
     cwd = path.join(fixtures, 'node-0.10');
 

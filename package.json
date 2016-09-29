@@ -34,7 +34,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "egg-bin dev",
-    "test": "npm run lint && npm run test-local",
+    "test": "npm run lint && egg-bin test -r intelli-espower-loader",
     "test-china": "NODEINSTALL_CHINA=true egg-bin test -r intelli-espower-loader",
     "cov": "egg-bin cov -r intelli-espower-loader",
     "lint": "eslint --ext js .",
