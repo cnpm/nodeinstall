@@ -61,5 +61,5 @@ describe('test/version.test.js', () => {
     });
   });
 
-  describe('getSafeVersion');
+  describe('getSafeVersion', () => {});
 });
