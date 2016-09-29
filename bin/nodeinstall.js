@@ -21,7 +21,7 @@ program
   .option('--no-cache', 'disable cache')
   .parse(process.argv);
 
-if (!program.args[0]) {
+if (!(program.args[0] || program.nightly)) {
   program.help();
   process.exit(1);
 }
