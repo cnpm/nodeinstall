@@ -3,98 +3,42 @@
 'use strict';
 
 const co = require('co');
-const path = require('path');
+const install = require('../lib/install');
 const program = require('commander');
-const NodeInstaller = require('..').NodeInstaller;
-const AlinodeInstaller = require('..').AlinodeInstaller;
-const NSolidInstaller = require('..').NSolidInstaller;
-const config = require('../lib/config');
+const only = require('only');
 
-const installers = {
-  node: NodeInstaller,
-  alinode: AlinodeInstaller,
-  nsolid: NSolidInstaller,
-};
-const distUrls = {
-  node: config.nodeDistUrl,
-  alinode: config.alinodeDistUrl,
-  nsolid: config.nsolidDistUrl,
-};
-const distMirrorUrls = {
-  node: config.nodeDistUrlMirror,
-  alinode: config.alinodeDistUrlMirror,
-  nsolid: config.nsolidDistUrlMirror,
-};
 
 program
-  .option('--install-node')
-  .option('--install-alinode')
-  .option('--install-nsolid')
-  .option('--dist-url [url]')
-  .option('--china')
-  .option('--cacha')
+  .version(require('../package.json').version)
+  .usage('[options] version')
+  .option('--install-node', 'install node')
+  .option('--install-noderc', 'install node rc')
+  .option('--install-alinode', 'install alinode')
+  .option('--install-nsolid', 'install nsolid')
+  .option('--nightly', 'install node nightly')
+  .option('--dist-url [url]', 'use your own distUrl')
+  .option('--china', 'using mirror of registry in china')
+  .option('--no-cache', 'disable cache')
   .parse(process.argv);
 
-co(function* () {
-  const options = getOptions();
-  if (!options) {
-    return;
-  }
+if (!program.args[0]) {
+  program.help();
+  process.exit(1);
+}
 
-  if (program.distUrl) {
-    options.distUrl = program.distUrl;
-  } else {
-    options.distUrl = program.china || process.env.NODEINSTALL_CHINA ?
-      distMirrorUrls[options.name] : distUrls[options.name];
-  }
-  options.cwd = process.cwd();
-  const Installer = installers[options.name];
-  if (Installer) {
-    const installer = new Installer(options);
-    yield installer.install();
-  }
+co(function* () {
+  const options = only(program, [
+    'installNode',
+    'installNoderc',
+    'installAlinode',
+    'installNsolid',
+    'nightly',
+    'china',
+    'cache',
+    'distUrl',
+  ]);
+  options.version = program.args[0];
+  yield install(options);
 }).catch(err => {
   console.error(err.stack);
 });
-
-function getOptions() {
-  const names = [ 'node', 'alinode', 'nsolid' ];
-  const version = program.args[0];
-  if (version) {
-    for (const name of names) {
-      const key = `install${capFirst(name)}`;
-      if (program[key]) {
-        return {
-          name,
-          version,
-        };
-      }
-    }
-    return {
-      name: 'node',
-      version,
-    };
-  }
-
-  let engines;
-  try {
-    engines = require(path.join(process.cwd(), 'package.json')).engines || {};
-  } catch (e) {
-    return;
-  }
-
-  for (const name of names) {
-    const key = `install-${name}`;
-    if (engines[key]) {
-      return {
-        name,
-        version: engines[key],
-      };
-    }
-  }
-
-}
-
-function capFirst(str) {
-  return str.substring(0, 1).toUpperCase() + str.substring(1);
-}

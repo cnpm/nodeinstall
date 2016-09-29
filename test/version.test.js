@@ -2,12 +2,13 @@
 
 const assert = require('power-assert');
 const version = require('../lib/version');
-const config = require('../lib/config');
+const getDistUrl = require('./utils').getDistUrl;
+
 
 describe('test/version.test.js', () => {
 
   describe('getNodeVersion', () => {
-    const distUrl = config.nodeDistUrlMirror;
+    const distUrl = getDistUrl('node');
 
     it('should get the latest version', function* () {
       const v = yield version.getNodeVersion({
@@ -34,7 +35,7 @@ describe('test/version.test.js', () => {
   });
 
   describe('getAlinodeVersion', () => {
-    const distUrl = config.alinodeDistUrlMirror;
+    const distUrl = getDistUrl('alinode');
 
     it('should get the latest version', function* () {
       const v = yield version.getAlinodeVersion({

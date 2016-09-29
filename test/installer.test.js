@@ -6,7 +6,7 @@ const assert = require('power-assert');
 const execSync = require('child_process').execSync;
 const NodeInstaller = require('..').NodeInstaller;
 const fixtures = path.join(__dirname, 'fixtures');
-const config = require('../lib/config');
+const getDistUrl = require('./utils').getDistUrl;
 
 
 describe('test/installer.test.js', function() {
@@ -29,7 +29,7 @@ describe('test/installer.test.js', function() {
       const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');
       const installer = new NodeInstaller({
         cwd,
-        distUrl: config.nodeDistUrl,
+        distUrl: getDistUrl('node'),
         version: '4.1.0',
         unsafeVersions: {
           '>= 1.0.0 < 4.4.4': '4.5.0',
