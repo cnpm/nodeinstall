@@ -38,6 +38,7 @@ describe('test/version.test.js', () => {
     const distUrl = getDistUrl('alinode');
 
     it('should get the latest version', function* () {
+      this.timeout(1000000);
       const v = yield version.getAlinodeVersion({
         distUrl,
       });
@@ -45,6 +46,7 @@ describe('test/version.test.js', () => {
     });
 
     it('should get the real version that match semver', function* () {
+      this.timeout(1000000);
       const v = yield version.getAlinodeVersion({
         version: '~1.2.0',
         distUrl,
@@ -53,6 +55,7 @@ describe('test/version.test.js', () => {
     });
 
     it('should get the real version', function* () {
+      this.timeout(1000000);
       const v = yield version.getAlinodeVersion({
         version: '1.5.6',
         distUrl,

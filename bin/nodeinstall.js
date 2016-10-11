@@ -15,13 +15,13 @@ program
   .option('--install-noderc', 'install node rc')
   .option('--install-alinode', 'install alinode')
   .option('--install-nsolid', 'install nsolid')
-  .option('--nightly', 'install node nightly')
+  .option('--install-nightly', 'install node nightly')
   .option('--dist-url [url]', 'use your own distUrl')
   .option('--china', 'using mirror of registry in china')
   .option('--no-cache', 'disable cache')
   .parse(process.argv);
 
-if (!(program.args[0] || program.nightly)) {
+if (!(program.args[0] || program.installNightly)) {
   program.help();
   process.exit(1);
 }
@@ -32,7 +32,7 @@ co(function* () {
     'installNoderc',
     'installAlinode',
     'installNsolid',
-    'nightly',
+    'installNightly',
     'china',
     'cache',
     'distUrl',

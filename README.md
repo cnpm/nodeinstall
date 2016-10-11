@@ -51,6 +51,7 @@ You can define version in package.json
     "install-node": "^6.0.0"
   }
 }
+```
 
 Use `install-alinode` to install Alinode and `install-nsolid` to install NSolid.
 
@@ -58,43 +59,11 @@ Use `install-alinode` to install Alinode and `install-nsolid` to install NSolid.
 
 ## API
 
-### installNode
-
-Install Node.js, you can use [Options](#options).
-
-```
+```js
 const co = require('co');
-const installNode = require('nodeinstall').installNode;
+const install = require('nodeinstall').install;
 co(function* () {
-  yield installNode({
-    version: '^6.0.0',
-  });
-});
-```
-
-### installAlinode
-
-Install Alinode, you can use [Options](#options).
-
-```
-const co = require('co');
-const installNode = require('nodeinstall').installNode;
-co(function* () {
-  yield installNode({
-    version: '^6.0.0',
-  });
-});
-```
-
-### installNSolid
-
-Install NSolid, you can use [Options](#options).
-
-```
-const co = require('co');
-const installNode = require('nodeinstall').installNode;
-co(function* () {
-  yield installNode({
+  yield install({
     version: '^6.0.0',
   });
 });
@@ -116,6 +85,12 @@ Version matching is based on distUrl.
 
 The url where to donwload the tarball, You can find all distUrl in [config.js]().
 
+#### china
+
+Use the mirror distUrl in china for speed.
+
+#### cache
+
 #### unsafeVersions
 
 The Map contains the unsafe version and the safe version.
@@ -127,6 +102,26 @@ const unsafeVersions = {
   '>= 1.0.0 < 4.4.4': '4.5.0',
 };
 ```
+
+#### installNode
+
+Install Node, it's a default options.
+
+#### installNoderc
+
+Install Node RC
+
+#### installAlinode
+
+Install Alinode
+
+#### installNsolid
+
+Install NSolid
+
+#### installNightly
+
+Install Node nightly, always be the latest version
 
 ## Questions & Suggestions
 

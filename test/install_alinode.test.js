@@ -25,6 +25,8 @@ describe('test/install_alinode.test.js', function() {
   });
 
   it('should install-node', function* () {
+    this.timeout(1000000);
+
     cwd = path.join(fixtures, 'install-alinode');
 
     yield coffee

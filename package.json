@@ -30,6 +30,10 @@
     "supertest": "^2.0.0"
   },
   "main": "lib/index.js",
+  "files": [
+    "bin",
+    "lib"
+  ],
   "engines": {
     "node": ">=4.0.0"
   },
@@ -40,7 +44,7 @@
     "test-china": "NODEINSTALL_CHINA=true egg-bin test -r intelli-espower-loader",
     "cov": "egg-bin cov -r intelli-espower-loader",
     "lint": "eslint --ext js .",
-    "ci": "npm run lint && npm run cov",
+    "ci": "npm run lint && DEBUG=nodeinstall* npm run cov",
     "autod": "autod"
   },
   "ci": {

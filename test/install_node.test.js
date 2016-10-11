@@ -69,7 +69,7 @@ describe('test/install_node.test.js', function() {
   it('should install node nightly', function* () {
     cwd = path.join(fixtures, 'install-node');
     yield coffee
-      .fork(nodeinstall, [ '--nightly' ], { cwd })
+      .fork(nodeinstall, [ '--install-nightly' ], { cwd })
       .debug()
       .expect('code', 0)
       .end();
