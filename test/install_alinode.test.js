@@ -11,7 +11,7 @@ const nodeinstall = path.join(__dirname, '../bin/nodeinstall');
 
 const fixtures = path.join(__dirname, 'fixtures');
 
-describe('test/install_alinode.test.js', function() {
+describe.skip('test/install_alinode.test.js', function() {
   let cwd;
   beforeEach(function() {
     if (cwd) {
@@ -24,7 +24,7 @@ describe('test/install_alinode.test.js', function() {
     }
   });
 
-  it('should install-node', function* () {
+  it('should install alinode', function* () {
     this.timeout(1000000);
 
     cwd = path.join(fixtures, 'install-alinode');

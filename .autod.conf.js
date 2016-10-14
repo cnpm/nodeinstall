@@ -13,13 +13,10 @@ module.exports = {
     'autod',
     'eslint',
     'eslint-config-egg',
-    'supertest',
     'power-assert',
     'intelli-espower-loader',
-    'egg-view-nunjucks',
   ],
   exclude: [
     './test/fixtures',
   ],
 };
-
