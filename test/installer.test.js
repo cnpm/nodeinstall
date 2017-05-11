@@ -2,7 +2,7 @@
 
 const path = require('path');
 const rimraf = require('rimraf');
-const assert = require('power-assert');
+const assert = require('assert');
 const execSync = require('child_process').execSync;
 const NodeInstaller = require('..').NodeInstaller;
 const fixtures = path.join(__dirname, 'fixtures');
