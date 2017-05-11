@@ -13,10 +13,12 @@ module.exports = {
     'autod',
     'eslint',
     'eslint-config-egg',
-    'power-assert',
-    'intelli-espower-loader',
   ],
   exclude: [
     './test/fixtures',
+  ],
+  semver: [
+    'egg-bin@1',
+    'tar@2',
   ],
 };

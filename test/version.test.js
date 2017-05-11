@@ -1,6 +1,6 @@
 'use strict';
 
-const assert = require('power-assert');
+const assert = require('assert');
 const version = require('../lib/version');
 const getDistUrl = require('./utils').getDistUrl;
 
