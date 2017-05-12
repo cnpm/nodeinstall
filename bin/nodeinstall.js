@@ -41,4 +41,5 @@ co(function* () {
   yield install(options);
 }).catch(err => {
   console.error(err.stack);
+  process.exit(1);
 });
