@@ -40,6 +40,7 @@ $ npm install nodeinstall -g
 
 - ✔︎ Install Node to Local
 - ✔︎ Support [Alinode] and [NSolid]
+- ✔︎ Support [node-chakracore]
 - ✔︎ Support RC and nighly
 - ✔︎ Package Define
 - ✔︎ Ignore Unsafe Versions
@@ -60,13 +61,15 @@ $ nodeinstall ^6.0.0
 $ ./node_modules/.bin/node -v
 ```
 
-You can also use nodeinstall to install [Alinode] or [NSolid]
+You can also use nodeinstall to install [Alinode], [node-chakracore] or [NSolid]
 
 ```shell
 $ nodeinstall --install-alinode 1.6.0
 $ ./node_modules/.bin/node -p 'process.versions.alinode'
 $ nodeinstall --install-nsolid 1.6.0
 $ ./node_modules/.bin/node -p 'process.versions.nsolid'
+$ nodeinstall --install-chakracore 7
+$ ./node_modules/.bin/node -p 'process.versions'
 ```
 
 You can define version in package.json
@@ -83,6 +86,7 @@ Also support
 
 - `install-alinode` for [Alinode]
 - `install-nsolid` for [NSolid]
+- `install-chakracore` for [node-chakracore]
 - `install-noderc`
 - `install-nightly`
 
@@ -116,9 +120,9 @@ Version matching is based on distUrl.
 
 The url where to donwload the tarball, You can find all distUrl in [config.js](https://github.com/cnpm/nodeinstall/blob/master/lib/config.js).
 
-#### china
+#### China
 
-Use the mirror distUrl in china for speed.
+Use the mirror distUrl in China for speed.
 
 #### cache
 
@@ -128,7 +132,7 @@ The Map contains the unsafe version and the safe version.
 
 For example, if you install 4.0.0 that is defined in unsafeVersions as an unsafe version, it will install 4.5.0 instead.
 
-```
+```js
 const unsafeVersions = {
   '>= 1.0.0 < 4.4.4': '4.5.0',
 };
@@ -150,6 +154,10 @@ Install Alinode, ignore when package define matched.
 
 Install NSolid, ignore when package define matched.
 
+#### installChakracore
+
+Install node-chakracore, ignore when package define matched.
+
 #### installNightly
 
 Install Node nightly, always be the latest version, ignore when package define matched.
@@ -164,3 +172,4 @@ MIT
 
 [Alinode]: http://alinode.aliyun.com/
 [NSolid]: https://nodesource.com/products/nsolid/
+[node-chakracore]: https://github.com/nodejs/node-chakracore/releases
