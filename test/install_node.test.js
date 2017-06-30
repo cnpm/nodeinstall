@@ -20,7 +20,7 @@ describe('test/install_node.test.js', function() {
     if (cwd) yield rimraf(path.join(cwd, 'node_modules'));
   });
 
-  it('should install node', function* () {
+  it.only('should install node', function* () {
     cwd = path.join(fixtures, 'install-node');
     yield coffee
       .fork(nodeinstall, [ '6.2.1' ], { cwd })
@@ -28,6 +28,7 @@ describe('test/install_node.test.js', function() {
       .expect('code', 0)
       .end();
 
+    console.log(fs.readdirSync(path.join(cwd, 'node_modules/node')));
     assert(fs.existsSync(path.join(cwd, 'node_modules')));
     const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');
     const npmBinPath = path.join(cwd, 'node_modules/.bin/npm');
