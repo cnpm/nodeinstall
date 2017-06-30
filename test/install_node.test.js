@@ -20,7 +20,7 @@ describe('test/install_node.test.js', function() {
     if (cwd) yield rimraf(path.join(cwd, 'node_modules'));
   });
 
-  it.only('should install node', function* () {
+  it('should install node', function* () {
     cwd = path.join(fixtures, 'install-node');
     yield coffee
       .fork(nodeinstall, [ '6.0.0' ], { cwd })
@@ -38,7 +38,7 @@ describe('test/install_node.test.js', function() {
     assert(fs.realpathSync(nodeBinPath) === path.join(nodeDir, 'bin/node'));
     assert(fs.realpathSync(npmBinPath) === path.join(nodeDir, 'lib/node_modules/npm/bin/npm-cli.js'));
     assert(execSync(`${nodeBinPath} -v`).toString() === 'v6.0.0\n');
-    assert(execSync(`${npmBinPath} -v`).toString() === '2.14.2\n');
+    assert(execSync(`${npmBinPath} -v`).toString() === '3.8.6\n');
   });
 
   it('should install noderc', function* () {
