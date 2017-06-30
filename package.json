@@ -31,7 +31,7 @@
     "lib"
   ],
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "scripts": {
     "start": "node index.js",
@@ -40,11 +40,11 @@
     "test-china": "NODEINSTALL_CHINA=true egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint --ext js .",
-    "ci": "npm run lint && DEBUG=nodeinstall* npm run cov",
+    "ci": "npm run lint && npm run cov",
     "autod": "autod"
   },
   "ci": {
-    "version": "4, 6, 7"
+    "version": "6, 7, 8"
   },
   "repository": {
     "type": "git",
