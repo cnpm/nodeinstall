@@ -12,6 +12,9 @@ const nodeinstall = path.join(__dirname, '../bin/nodeinstall');
 
 
 describe('test/install_nsolid.test.js', function() {
+  // don't support Windows
+  if (process.platform === 'win32') return;
+
   let cwd;
   beforeEach(function* () {
     if (cwd) yield rimraf(path.join(cwd, 'node_modules'));

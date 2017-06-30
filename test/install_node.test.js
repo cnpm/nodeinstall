@@ -23,7 +23,7 @@ describe('test/install_node.test.js', function() {
   it('should install node', function* () {
     cwd = path.join(fixtures, 'install-node');
     yield coffee
-      .fork(nodeinstall, [ '6.0.0' ], { cwd })
+      .fork(nodeinstall, [ '6.2.1' ], { cwd })
       .debug()
       .expect('code', 0)
       .end();
@@ -37,14 +37,14 @@ describe('test/install_node.test.js', function() {
     assert(fs.existsSync(nodeDir));
     assert(fs.realpathSync(nodeBinPath) === path.join(nodeDir, 'bin/node'));
     assert(fs.realpathSync(npmBinPath) === path.join(nodeDir, 'lib/node_modules/npm/bin/npm-cli.js'));
-    assert(execSync(`${nodeBinPath} -v`).toString() === 'v6.0.0\n');
-    assert(execSync(`${npmBinPath} -v`).toString() === '3.8.6\n');
+    assert(execSync(`${nodeBinPath} -v`).toString() === 'v6.2.1\n');
+    assert(execSync(`${npmBinPath} -v`).toString() === '3.9.3\n');
   });
 
   it('should install noderc', function* () {
     cwd = path.join(fixtures, 'install-node');
     yield coffee
-      .fork(nodeinstall, [ '--install-noderc', '6.0.0-rc.3' ], { cwd })
+      .fork(nodeinstall, [ '--install-noderc', '6.9.2-rc.1' ], { cwd })
       .debug()
       .expect('code', 0)
       .end();
@@ -58,7 +58,7 @@ describe('test/install_node.test.js', function() {
     assert(fs.existsSync(nodeDir));
     assert(fs.realpathSync(nodeBinPath) === path.join(nodeDir, 'bin/node'));
     assert(fs.realpathSync(npmBinPath) === path.join(nodeDir, 'lib/node_modules/npm/bin/npm-cli.js'));
-    assert(execSync(`${nodeBinPath} -v`).toString() === 'v6.0.0-rc.3\n');
+    assert(execSync(`${nodeBinPath} -v`).toString() === 'v6.9.2-rc.1\n');
   });
 
 
