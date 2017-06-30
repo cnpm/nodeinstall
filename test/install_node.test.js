@@ -6,6 +6,7 @@ const assert = require('assert');
 const coffee = require('coffee');
 const execSync = require('child_process').execSync;
 const rimraf = require('mz-modules/rimraf');
+const runscript = require('runscript');
 
 const tnpm = path.join(__dirname, '..', 'bin', 'tnpm.js');
 const fixtures = path.join(__dirname, 'fixtures');
@@ -38,8 +39,11 @@ describe('test/install_node.test.js', function() {
     assert(fs.existsSync(nodeDir));
     assert(fs.realpathSync(nodeBinPath) === path.join(nodeDir, 'bin/node'));
     assert(fs.realpathSync(npmBinPath) === path.join(nodeDir, 'lib/node_modules/npm/bin/npm-cli.js'));
-    assert(execSync(`${nodeBinPath} -v`).toString() === 'v6.2.1\n');
-    assert(execSync(`${npmBinPath} -v`).toString() === '3.9.3\n');
+
+    let stdio = yield runscript(`${nodeBinPath} -v`, { stdio: 'pipe' });
+    assert(stdio.stdout.toString() === 'v6.2.1\n');
+    stdio = yield runscript(`${npmBinPath} -v`, { stdio: 'pipe' });
+    assert(stdio.stdout.toString() === '3.9.3\n');
   });
 
   it('should install noderc', function* () {

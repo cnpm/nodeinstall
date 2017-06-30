@@ -23,7 +23,8 @@
     "egg-bin": "^4.0.4",
     "egg-ci": "^1.8.0",
     "eslint": "^4.1.1",
-    "eslint-config-egg": "^5.0.0"
+    "eslint-config-egg": "^5.0.0",
+    "runscript": "^1.2.1"
   },
   "main": "lib/index.js",
   "files": [
