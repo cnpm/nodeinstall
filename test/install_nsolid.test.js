@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
-const rimraf = require('rimraf');
+const rimraf = require('mz-modules/rimraf');
 const execSync = require('child_process').execSync;
 const coffee = require('coffee');
 
@@ -13,15 +13,11 @@ const nodeinstall = path.join(__dirname, '../bin/nodeinstall');
 
 describe('test/install_nsolid.test.js', function() {
   let cwd;
-  beforeEach(function() {
-    if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
-    }
+  beforeEach(function* () {
+    if (cwd) yield rimraf(path.join(cwd, 'node_modules'));
   });
-  afterEach(function() {
-    if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
-    }
+  afterEach(function* () {
+    if (cwd) yield rimraf(path.join(cwd, 'node_modules'));
   });
 
   it('should install-nsolid', function* () {

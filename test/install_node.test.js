@@ -3,9 +3,9 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
-const rimraf = require('rimraf');
 const coffee = require('coffee');
 const execSync = require('child_process').execSync;
+const rimraf = require('mz-modules/rimraf');
 
 const tnpm = path.join(__dirname, '..', 'bin', 'tnpm.js');
 const fixtures = path.join(__dirname, 'fixtures');
@@ -13,21 +13,17 @@ const nodeinstall = path.join(__dirname, '../bin/nodeinstall');
 
 describe('test/install_node.test.js', function() {
   let cwd;
-  beforeEach(function() {
-    if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
-    }
+  beforeEach(function* () {
+    if (cwd) yield rimraf(path.join(cwd, 'node_modules'));
   });
-  afterEach(function() {
-    if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
-    }
+  afterEach(function* () {
+    if (cwd) yield rimraf(path.join(cwd, 'node_modules'));
   });
 
-  it('should install node', function* () {
+  it.only('should install node', function* () {
     cwd = path.join(fixtures, 'install-node');
     yield coffee
-      .fork(nodeinstall, [ '4.0.0' ], { cwd })
+      .fork(nodeinstall, [ '6.0.0' ], { cwd })
       .debug()
       .expect('code', 0)
       .end();
@@ -41,7 +37,7 @@ describe('test/install_node.test.js', function() {
     assert(fs.existsSync(nodeDir));
     assert(fs.realpathSync(nodeBinPath) === path.join(nodeDir, 'bin/node'));
     assert(fs.realpathSync(npmBinPath) === path.join(nodeDir, 'lib/node_modules/npm/bin/npm-cli.js'));
-    assert(execSync(`${nodeBinPath} -v`).toString() === 'v4.0.0\n');
+    assert(execSync(`${nodeBinPath} -v`).toString() === 'v6.0.0\n');
     assert(execSync(`${npmBinPath} -v`).toString() === '2.14.2\n');
   });
 
