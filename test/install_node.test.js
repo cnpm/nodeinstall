@@ -22,6 +22,7 @@ describe('test/install_node.test.js', function() {
   });
 
   it.only('should install node', function* () {
+    console.log(require.resolve('compressing/package.json'));
     cwd = path.join(fixtures, 'install-node');
     yield coffee
       .fork(nodeinstall, [ '6.2.1' ], { cwd })
