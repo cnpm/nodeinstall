@@ -35,7 +35,6 @@ describe('test/install_node.test.js', function() {
 
     assert(fs.existsSync(path.join(cwd, 'node_modules')));
     let nodeBinPath = path.join(cwd, 'node_modules/.bin/node');
-    if (process.platform === 'win32') nodeBinPath += '.exe';
     const npmBinPath = path.join(cwd, 'node_modules/.bin/npm');
     const nodeDir = path.join(cwd, 'node_modules/node');
     assert(fs.existsSync(nodeBinPath));
