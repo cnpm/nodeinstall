@@ -31,6 +31,7 @@ describe('test/install_node.test.js', function() {
       .expect('code', 0)
       .end();
 
+    yield runscript(`ls -al ${path.join(cwd, 'node_modules/.bin')}`);
     console.log(fs.readdirSync(path.join(cwd, 'node_modules/.bin')));
     console.log(fs.readFileSync(path.join(cwd, 'node_modules/.bin/node')));
 
