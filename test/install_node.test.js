@@ -34,7 +34,7 @@ describe('test/install_node.test.js', function() {
     assert(fs.existsSync(path.join(cwd, 'node_modules')));
     assert(fs.existsSync(path.join(cwd, 'node_modules/node')));
 
-    // const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');
+    const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');
     // const nodeBinRealPath = path.join(nodeBinPath, '../node/bin/node');
     // // assert(fs.existsSync(nodeBinRealPath));
     // assert(fs.realpathSync(nodeBinPath) === nodeBinRealPath);
