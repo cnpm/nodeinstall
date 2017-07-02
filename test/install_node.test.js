@@ -7,6 +7,7 @@ const coffee = require('coffee');
 const execSync = require('child_process').execSync;
 const rimraf = require('mz-modules/rimraf');
 const runscript = require('runscript');
+const mm = require('mm');
 
 const tnpm = path.join(__dirname, '..', 'bin', 'tnpm.js');
 const fixtures = path.join(__dirname, 'fixtures');
@@ -20,9 +21,10 @@ describe('test/install_node.test.js', function() {
   afterEach(function* () {
     if (cwd) yield rimraf(path.join(cwd, 'node_modules'));
   });
+  afterEach(mm.restore);
 
   it.only('should install node', function* () {
-    console.log(require.resolve('compressing/package.json'));
+    console.log(require('compressing/package.json'));
     cwd = path.join(fixtures, 'install-node');
     yield coffee
       .fork(nodeinstall, [ '6.2.1' ], { cwd })
@@ -43,6 +45,7 @@ describe('test/install_node.test.js', function() {
 
     let stdio = yield runscript(`${nodeBinPath} -v`, { stdio: 'pipe' });
     assert(stdio.stdout.toString() === 'v6.2.1\n');
+    console.log(npmBinPath);
     stdio = yield runscript(`${npmBinPath} -v`, { stdio: 'pipe' });
     assert(stdio.stdout.toString() === '3.9.3\n');
   });
