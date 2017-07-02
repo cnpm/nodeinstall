@@ -46,6 +46,7 @@ describe('test/install_node.test.js', function() {
 
     // assert(fs.realpathSync(npmBinPath) === path.join(nodeDir, 'lib/node_modules/npm/bin/npm-cli.js'));
 
+    yield runscript('which node');
     const stdio = yield runscript(`${nodeBinPath} -v`, { stdio: 'pipe' });
     assert(stdio.stdout.toString() === 'v6.3.0\n');
   });
