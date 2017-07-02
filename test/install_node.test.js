@@ -33,7 +33,6 @@ describe('test/install_node.test.js', function() {
 
     yield runscript(`ls -al ${path.join(cwd, 'node_modules/.bin')}`);
     console.log(fs.readdirSync(path.join(cwd, 'node_modules/.bin')));
-    console.log(fs.readFileSync(path.join(cwd, 'node_modules/.bin/node')));
 
     assert(fs.existsSync(path.join(cwd, 'node_modules')));
     const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');
