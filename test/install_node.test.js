@@ -38,7 +38,7 @@ describe('test/install_node.test.js', function() {
     const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');
     const npmBinPath = path.join(cwd, 'node_modules/.bin/npm');
     const nodeDir = path.join(cwd, 'node_modules/node');
-    assert(fs.accessSync(nodeBinPath));
+    assert(fs.readlikeSync(nodeBinPath));
     assert(fs.existsSync(path.join(cwd, 'node_modules/.bin/npm')));
     assert(fs.existsSync(nodeDir));
     assert(fs.realpathSync(nodeBinPath) === path.join(nodeDir, 'bin/node'));
