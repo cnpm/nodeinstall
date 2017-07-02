@@ -36,12 +36,12 @@ describe('test/install_node.test.js', function() {
 
     const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');
     const nodeBinRealPath = path.join(nodeBinPath, '../node/bin/node');
-    assert(fs.existsSync(nodeBinRealPath));
+    // assert(fs.existsSync(nodeBinRealPath));
     assert(fs.realpathSync(nodeBinPath) === nodeBinRealPath);
 
     const npmBinPath = path.join(cwd, 'node_modules/.bin/npm');
     const npmBinRealPath = path.join(npmBinPath, '../node/bin/npm');
-    assert(fs.existsSync(npmBinRealPath));
+    // assert(fs.existsSync(npmBinRealPath));
     assert(fs.realpathSync(npmBinPath) === npmBinRealPath);
 
     // assert(fs.realpathSync(npmBinPath) === path.join(nodeDir, 'lib/node_modules/npm/bin/npm-cli.js'));
