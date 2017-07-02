@@ -31,7 +31,7 @@ describe('test/install_node.test.js', function() {
       .expect('code', 0)
       .end();
 
-    console.log(fs.readdirSync(path.join(cwd, 'node_modules')));
+    console.log(fs.readdirSync(path.join(cwd, 'node_modules/.bin')));
 
     assert(fs.existsSync(path.join(cwd, 'node_modules')));
     let nodeBinPath = path.join(cwd, 'node_modules/.bin/node');
