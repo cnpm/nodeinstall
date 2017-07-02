@@ -24,7 +24,6 @@ describe('test/install_node.test.js', function() {
   afterEach(mm.restore);
 
   it.only('should install node', function* () {
-    console.log(require('compressing/package.json'));
     cwd = path.join(fixtures, 'install-node');
     yield coffee
       .fork(nodeinstall, [ '6.3.0' ], { cwd })
@@ -32,7 +31,6 @@ describe('test/install_node.test.js', function() {
       .expect('code', 0)
       .end();
 
-    console.log(fs.readdirSync(path.join(cwd, 'node_modules/node')));
     assert(fs.existsSync(path.join(cwd, 'node_modules')));
     const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');
     const npmBinPath = path.join(cwd, 'node_modules/.bin/npm');
@@ -43,17 +41,8 @@ describe('test/install_node.test.js', function() {
     assert(fs.realpathSync(nodeBinPath) === path.join(nodeDir, 'bin/node'));
     assert(fs.realpathSync(npmBinPath) === path.join(nodeDir, 'lib/node_modules/npm/bin/npm-cli.js'));
 
-    const env = Object.assign({}, process.env);
-    console.log(env);
-    env.PATH = `${cwd}/node_modules/.bin:${env.PATH}`;
-
-    let stdio = yield runscript('node -v', { stdio: 'pipe', env });
+    const stdio = yield runscript(`${nodeBinPath} -v`, { stdio: 'pipe' });
     assert(stdio.stdout.toString() === 'v6.3.0\n');
-    console.log(npmBinPath);
-    yield runscript('which npm', { env });
-    yield runscript('npm -v', { env });
-    stdio = yield runscript('npm -v', { stdio: 'pipe', env });
-    assert(stdio.stdout.toString() === '3.9.3\n');
   });
 
   it('should install noderc', function* () {
