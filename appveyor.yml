@@ -11,9 +11,6 @@ install:
 test_script:
   - node --version
   - npm --version
-  - npm run ci
-
-after_test:
-  - npminstall codecov && codecov
+  - npm run test
 
 build: off

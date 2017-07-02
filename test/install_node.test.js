@@ -43,10 +43,15 @@ describe('test/install_node.test.js', function() {
     assert(fs.realpathSync(nodeBinPath) === path.join(nodeDir, 'bin/node'));
     assert(fs.realpathSync(npmBinPath) === path.join(nodeDir, 'lib/node_modules/npm/bin/npm-cli.js'));
 
-    let stdio = yield runscript(`${nodeBinPath} -v`, { stdio: 'pipe' });
+    const env = Object.assign({}, process.env);
+    console.log(env);
+    env.PATH = `${cwd}/node_modules/.bin:${env.PATH}`;
+
+    let stdio = yield runscript('node -v', { stdio: 'pipe', env });
     assert(stdio.stdout.toString() === 'v6.2.1\n');
     console.log(npmBinPath);
-    stdio = yield runscript(`${npmBinPath} -v`, { stdio: 'pipe' });
+    yield runscript('which npm');
+    stdio = yield runscript('npm -v', { stdio: 'pipe', env });
     assert(stdio.stdout.toString() === '3.9.3\n');
   });
 
