@@ -50,7 +50,8 @@ describe('test/install_node.test.js', function() {
     let stdio = yield runscript('node -v', { stdio: 'pipe', env });
     assert(stdio.stdout.toString() === 'v6.2.1\n');
     console.log(npmBinPath);
-    yield runscript('which npm');
+    yield runscript('which npm', { env });
+    yield runscript('npm -v', { env });
     stdio = yield runscript('npm -v', { stdio: 'pipe', env });
     assert(stdio.stdout.toString() === '3.9.3\n');
   });
