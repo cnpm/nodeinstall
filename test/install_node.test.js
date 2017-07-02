@@ -31,18 +31,20 @@ describe('test/install_node.test.js', function() {
       .expect('code', 0)
       .end();
 
-    yield runscript(`ls -al ${path.join(cwd, 'node_modules/.bin')}`);
-    console.log(fs.readdirSync(path.join(cwd, 'node_modules/.bin')));
-
     assert(fs.existsSync(path.join(cwd, 'node_modules')));
+    assert(fs.existsSync(path.join(cwd, 'node_modules/node')));
+
     const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');
+    const nodeBinRealPath = path.join(nodeBinPath, '../node/bin/node');
+    assert(fs.existsSync(nodeBinRealPath));
+    assert(fs.realpathSync(nodeBinPath) === nodeBinRealPath);
+
     const npmBinPath = path.join(cwd, 'node_modules/.bin/npm');
-    const nodeDir = path.join(cwd, 'node_modules/node');
-    assert(fs.readlinkSync(nodeBinPath));
-    assert(fs.existsSync(path.join(cwd, 'node_modules/.bin/npm')));
-    assert(fs.existsSync(nodeDir));
-    assert(fs.realpathSync(nodeBinPath) === path.join(nodeDir, 'bin/node'));
-    assert(fs.realpathSync(npmBinPath) === path.join(nodeDir, 'lib/node_modules/npm/bin/npm-cli.js'));
+    const npmBinRealPath = path.join(npmBinPath, '../node/bin/npm');
+    assert(fs.existsSync(npmBinRealPath));
+    assert(fs.realpathSync(npmBinPath) === npmBinRealPath);
+
+    // assert(fs.realpathSync(npmBinPath) === path.join(nodeDir, 'lib/node_modules/npm/bin/npm-cli.js'));
 
     const stdio = yield runscript(`${nodeBinPath} -v`, { stdio: 'pipe' });
     assert(stdio.stdout.toString() === 'v6.3.0\n');
