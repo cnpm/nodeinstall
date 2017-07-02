@@ -27,7 +27,7 @@ describe('test/install_node.test.js', function() {
     console.log(require('compressing/package.json'));
     cwd = path.join(fixtures, 'install-node');
     yield coffee
-      .fork(nodeinstall, [ '6.2.1' ], { cwd })
+      .fork(nodeinstall, [ '6.3.0' ], { cwd })
       .debug()
       .expect('code', 0)
       .end();
@@ -48,7 +48,7 @@ describe('test/install_node.test.js', function() {
     env.PATH = `${cwd}/node_modules/.bin:${env.PATH}`;
 
     let stdio = yield runscript('node -v', { stdio: 'pipe', env });
-    assert(stdio.stdout.toString() === 'v6.2.1\n');
+    assert(stdio.stdout.toString() === 'v6.3.0\n');
     console.log(npmBinPath);
     yield runscript('which npm', { env });
     yield runscript('npm -v', { env });
