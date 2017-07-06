@@ -23,7 +23,7 @@ describe('test/install_node.test.js', function() {
   });
   afterEach(mm.restore);
 
-  it('should install node', function* () {
+  it.only('should install node', function* () {
     cwd = path.join(fixtures, 'install-node');
     yield coffee
       .fork(nodeinstall, [ '6.3.0' ], { cwd })
