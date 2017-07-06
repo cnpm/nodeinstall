@@ -23,7 +23,7 @@ describe('test/install_node.test.js', function() {
   });
   afterEach(mm.restore);
 
-  it.only('should install node', function* () {
+  it('should install node', function* () {
     cwd = path.join(fixtures, 'install-node');
     yield coffee
       .fork(nodeinstall, [ '6.3.0' ], { cwd })
@@ -35,16 +35,14 @@ describe('test/install_node.test.js', function() {
     assert(fs.existsSync(path.join(cwd, 'node_modules/node')));
 
     const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');
-    // const nodeBinRealPath = path.join(nodeBinPath, '../node/bin/node');
-    // // assert(fs.existsSync(nodeBinRealPath));
-    // assert(fs.realpathSync(nodeBinPath) === nodeBinRealPath);
-    //
-    // const npmBinPath = path.join(cwd, 'node_modules/.bin/npm');
-    // const npmBinRealPath = path.join(npmBinPath, '../node/bin/npm');
-    // // assert(fs.existsSync(npmBinRealPath));
-    // assert(fs.realpathSync(npmBinPath) === npmBinRealPath);
+    const nodeBinRealPath = path.join(nodeBinPath, '../../node/bin/node');
+    assert(fs.existsSync(nodeBinRealPath));
+    assert(fs.realpathSync(nodeBinPath) === nodeBinRealPath);
 
-    // assert(fs.realpathSync(npmBinPath) === path.join(nodeDir, 'lib/node_modules/npm/bin/npm-cli.js'));
+    const npmBinPath = path.join(cwd, 'node_modules/.bin/npm');
+    const npmBinRealPath = path.join(npmBinPath, '../../node/lib/node_modules/npm/bin/npm-cli.js');
+    assert(fs.existsSync(npmBinRealPath));
+    assert(fs.realpathSync(npmBinPath) === npmBinRealPath);
 
     yield runscript('which node');
     const stdio = yield runscript(`${nodeBinPath} -v`, { stdio: 'pipe' });
