@@ -18,7 +18,6 @@ module.exports = {
     './test/fixtures',
   ],
   semver: [
-    'egg-bin@1',
     'tar@2',
   ],
 };

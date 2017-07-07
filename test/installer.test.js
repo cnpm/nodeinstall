@@ -1,9 +1,9 @@
 'use strict';
 
 const path = require('path');
-const rimraf = require('rimraf');
 const assert = require('assert');
 const execSync = require('child_process').execSync;
+const rimraf = require('mz-modules/rimraf');
 const NodeInstaller = require('..').NodeInstaller;
 const fixtures = path.join(__dirname, 'fixtures');
 const getDistUrl = require('./utils').getDistUrl;
@@ -11,15 +11,11 @@ const getDistUrl = require('./utils').getDistUrl;
 
 describe('test/installer.test.js', function() {
   let cwd;
-  beforeEach(function() {
-    if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
-    }
+  beforeEach(function* () {
+    if (cwd) yield rimraf(path.join(cwd, 'node_modules'));
   });
-  afterEach(function() {
-    if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
-    }
+  afterEach(function* () {
+    if (cwd) yield rimraf(path.join(cwd, 'node_modules'));
   });
 
   describe('unsafeVersions', function() {

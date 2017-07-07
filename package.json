@@ -5,10 +5,11 @@
   "dependencies": {
     "bytes": "^2.5.0",
     "co": "^4.6.0",
-    "commander": "^2.9.0",
-    "debug": "^2.6.6",
+    "commander": "^2.10.0",
+    "compressing": "^1.2.1",
+    "debug": "^2.6.8",
     "extend": "^3.0.1",
-    "mkdirp": "^0.5.1",
+    "mz-modules": "^1.0.0",
     "node-nightly-version": "^1.0.6",
     "only": "^0.0.2",
     "progress": "^2.0.0",
@@ -18,12 +19,14 @@
   },
   "devDependencies": {
     "autod": "^2.8.0",
-    "coffee": "^3.3.1",
-    "egg-bin": "^1.10.3",
-    "egg-ci": "^1.6.0",
-    "eslint": "^3.19.0",
-    "eslint-config-egg": "^4.1.0",
-    "rimraf": "^2.6.1"
+    "coffee": "^4.1.0",
+    "cross-env": "^5.0.1",
+    "egg-bin": "^4.0.4",
+    "egg-ci": "^1.8.0",
+    "eslint": "^4.1.1",
+    "eslint-config-egg": "^5.0.0",
+    "mm": "^2.1.0",
+    "runscript": "^1.2.1"
   },
   "main": "lib/index.js",
   "files": [
@@ -31,20 +34,20 @@
     "lib"
   ],
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "scripts": {
     "start": "node index.js",
     "dev": "egg-bin dev",
     "test": "npm run lint && egg-bin test",
-    "test-china": "NODEINSTALL_CHINA=true egg-bin test",
+    "test-china": "cross-env NODEINSTALL_CHINA=true egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint --ext js .",
-    "ci": "npm run lint && DEBUG=nodeinstall* npm run cov",
+    "ci": "npm run lint && npm run cov",
     "autod": "autod"
   },
   "ci": {
-    "version": "4, 6, 7"
+    "version": "6, 7, 8"
   },
   "repository": {
     "type": "git",

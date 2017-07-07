@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
-const rimraf = require('rimraf');
+const rimraf = require('mz-modules/rimraf');
 const execSync = require('child_process').execSync;
 const coffee = require('coffee');
 const nodeinstall = path.join(__dirname, '../bin/nodeinstall');
@@ -12,16 +12,15 @@ const nodeinstall = path.join(__dirname, '../bin/nodeinstall');
 const fixtures = path.join(__dirname, 'fixtures');
 
 describe.skip('test/install_alinode.test.js', function() {
+  // don't support Windows
+  if (process.platform === 'win32') return;
+
   let cwd;
-  beforeEach(function() {
-    if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
-    }
+  beforeEach(function* () {
+    if (cwd) yield rimraf(path.join(cwd, 'node_modules'));
   });
-  afterEach(function() {
-    if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
-    }
+  afterEach(function* () {
+    if (cwd) yield rimraf(path.join(cwd, 'node_modules'));
   });
 
   it('should install alinode', function* () {
