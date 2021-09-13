@@ -3,7 +3,9 @@
 const path = require('path');
 const rimraf = require('rimraf');
 const assert = require('assert');
+const os = require('os');
 const execSync = require('child_process').execSync;
+const mm = require('egg-mock');
 const NodeInstaller = require('..').NodeInstaller;
 const fixtures = path.join(__dirname, 'fixtures');
 const getDistUrl = require('./utils').getDistUrl;
@@ -21,6 +23,7 @@ describe('test/installer.test.js', function() {
       rimraf.sync(path.join(cwd, 'node_modules'));
     }
   });
+  afterEach(mm.restore);
 
   describe('unsafeVersions', function() {
 
@@ -40,4 +43,24 @@ describe('test/installer.test.js', function() {
     });
   });
 
+  it('should support apple silicon', function* () {
+    mm(os, 'arch', function() {
+      return 'arm64';
+    });
+
+    let resolveFn;
+    cwd = path.join(fixtures, 'install-node');
+    const installer = new NodeInstaller({
+      cwd,
+      distUrl: getDistUrl('node'),
+      version: '16',
+    });
+    const installPromise = new Promise(resolve => (resolveFn = resolve));
+    installer.on('download', ({ tgzUrl }) => {
+      assert(tgzUrl.indexOf('arm64') > -1);
+      resolveFn();
+    });
+    yield installer.install();
+    yield installPromise;
+  });
 });
