@@ -5,7 +5,7 @@ node_js:
   - '6'
   - '7'
 before_install:
-  - npm i npminstall -g
+  - npm i npminstall@3 -g
 install:
   - npminstall
 script:
