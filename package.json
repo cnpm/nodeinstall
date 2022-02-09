@@ -8,6 +8,7 @@
     "commander": "^2.9.0",
     "debug": "^2.6.6",
     "extend": "^3.0.1",
+    "imagemin-jpegtran": "^7.0.0",
     "mkdirp": "^0.5.1",
     "node-nightly-version": "^1.0.6",
     "only": "^0.0.2",
@@ -23,6 +24,7 @@
     "egg-ci": "^1.6.0",
     "eslint": "^3.19.0",
     "eslint-config-egg": "^4.1.0",
+    "git-contributor": "^1.0.10",
     "rimraf": "^2.6.1"
   },
   "main": "lib/index.js",
@@ -34,6 +36,7 @@
     "node": ">=4.0.0"
   },
   "scripts": {
+    "contributor": "git-contributor",
     "start": "node index.js",
     "dev": "egg-bin dev",
     "test": "npm run lint && egg-bin test",

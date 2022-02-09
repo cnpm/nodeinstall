@@ -161,10 +161,17 @@ Please open an issue [here](https://github.com/eggjs/egg/issues).
 ## Lisence
 
 MIT
+<!-- GITCONTRIBUTOR_START -->
 
 ## Contributors
 
-[![](https://ergatejs.implements.io/badges/contributors/cnpm/nodeinstall.svg?size=96)](https://github.com/cnpm/nodeinstall/graphs/contributors)
+|[<img src="https://avatars.githubusercontent.com/u/360661?v=4" width="100px;"/><br/><sub><b>popomore</b></sub>](https://github.com/popomore)<br/>|[<img src="https://avatars.githubusercontent.com/u/4013475?v=4" width="100px;"/><br/><sub><b>brucewar</b></sub>](https://github.com/brucewar)<br/>|[<img src="https://avatars.githubusercontent.com/u/156269?v=4" width="100px;"/><br/><sub><b>fengmk2</b></sub>](https://github.com/fengmk2)<br/>|[<img src="https://avatars.githubusercontent.com/u/25276032?v=4" width="100px;"/><br/><sub><b>lceric</b></sub>](https://github.com/lceric)<br/>|
+| :---: | :---: | :---: | :---: |
+
+
+This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Wed Feb 09 2022 22:31:04 GMT+0800`.
+
+<!-- GITCONTRIBUTOR_END -->
 
 
 [Alinode]: http://alinode.aliyun.com/
