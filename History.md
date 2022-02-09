@@ -1,4 +1,10 @@
 
+0.1.4 / 2022-02-09
+==================
+
+**fixes**
+  * [[`cda065e`](http://github.com/cnpm/nodeinstall/commit/cda065e0676b480836575add865fb23ab4e8391e)] - fix: update npmmirror.com domain (#18) (lichao <<18709270892@163.com>>)
+
 0.1.3 / 2017-05-12
 ==================
 

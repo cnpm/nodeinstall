@@ -162,5 +162,10 @@ Please open an issue [here](https://github.com/eggjs/egg/issues).
 
 MIT
 
+## Contributors
+
+[![](https://ergatejs.implements.io/badges/contributors/cnpm/nodeinstall.svg?size=96)](https://github.com/cnpm/nodeinstall/graphs/contributors)
+
+
 [Alinode]: http://alinode.aliyun.com/
 [NSolid]: https://nodesource.com/products/nsolid/
