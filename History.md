@@ -1,4 +1,10 @@
 
+0.1.6 / 2022-08-03
+==================
+
+**fixes**
+  * [[`07b22c1`](http://github.com/cnpm/nodeinstall/commit/07b22c150d6945500e2859aab90cbaba1cc55b96)] - fix: remove deps imagemin-jpegtran (#22) (Ke Wu <<gemwuu@163.com>>)
+
 0.1.5 / 2022-07-29
 ==================
 
