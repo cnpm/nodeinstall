@@ -1,22 +1,14 @@
 # Nodeinstall
 
 [![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
+[![Node.js CI](https://github.com/cnpm/nodeinstall/actions/workflows/nodejs.yml/badge.svg)](https://github.com/cnpm/nodeinstall/actions/workflows/nodejs.yml)
 [![Test coverage][codecov-image]][codecov-url]
-[![David deps][david-image]][david-url]
-[![Known Vulnerabilities][snyk-image]][snyk-url]
 [![npm download][download-image]][download-url]
 
 [npm-image]: https://img.shields.io/npm/v/nodeinstall.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/nodeinstall
-[travis-image]: https://img.shields.io/travis/cnpm/nodeinstall.svg?style=flat-square
-[travis-url]: https://travis-ci.org/cnpm/nodeinstall
 [codecov-image]: https://codecov.io/gh/cnpm/nodeinstall/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/cnpm/nodeinstall
-[david-image]: https://img.shields.io/david/cnpm/nodeinstall.svg?style=flat-square
-[david-url]: https://david-dm.org/cnpm/nodeinstall
-[snyk-image]: https://snyk.io/test/npm/nodeinstall/badge.svg?style=flat-square
-[snyk-url]: https://snyk.io/test/npm/nodeinstall
 [download-image]: https://img.shields.io/npm/dm/nodeinstall.svg?style=flat-square
 [download-url]: https://npmjs.org/package/nodeinstall
 
@@ -74,7 +66,7 @@ You can define version in package.json
 ```json
 {
   "engines": {
-    "install-node": "^6.0.0"
+    "install-node": "^18.0.0"
   }
 }
 ```
@@ -95,7 +87,7 @@ const co = require('co');
 const install = require('nodeinstall').install;
 co(function* () {
   yield install({
-    version: '^6.0.0',
+    version: '^18.0.0',
   });
 });
 ```
@@ -165,11 +157,11 @@ MIT
 
 ## Contributors
 
-|[<img src="https://avatars.githubusercontent.com/u/360661?v=4" width="100px;"/><br/><sub><b>popomore</b></sub>](https://github.com/popomore)<br/>|[<img src="https://avatars.githubusercontent.com/u/4013475?v=4" width="100px;"/><br/><sub><b>brucewar</b></sub>](https://github.com/brucewar)<br/>|[<img src="https://avatars.githubusercontent.com/u/156269?v=4" width="100px;"/><br/><sub><b>fengmk2</b></sub>](https://github.com/fengmk2)<br/>|[<img src="https://avatars.githubusercontent.com/u/25276032?v=4" width="100px;"/><br/><sub><b>lceric</b></sub>](https://github.com/lceric)<br/>|
-| :---: | :---: | :---: | :---: |
+|[<img src="https://avatars.githubusercontent.com/u/360661?v=4" width="100px;"/><br/><sub><b>popomore</b></sub>](https://github.com/popomore)<br/>|[<img src="https://avatars.githubusercontent.com/u/156269?v=4" width="100px;"/><br/><sub><b>fengmk2</b></sub>](https://github.com/fengmk2)<br/>|[<img src="https://avatars.githubusercontent.com/u/4635838?v=4" width="100px;"/><br/><sub><b>gemwuu</b></sub>](https://github.com/gemwuu)<br/>|[<img src="https://avatars.githubusercontent.com/u/4013475?v=4" width="100px;"/><br/><sub><b>brucewar</b></sub>](https://github.com/brucewar)<br/>|[<img src="https://avatars.githubusercontent.com/u/6339390?v=4" width="100px;"/><br/><sub><b>richardo2016</b></sub>](https://github.com/richardo2016)<br/>|[<img src="https://avatars.githubusercontent.com/u/25276032?v=4" width="100px;"/><br/><sub><b>lceric</b></sub>](https://github.com/lceric)<br/>|
+| :---: | :---: | :---: | :---: | :---: | :---: |
 
 
-This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Wed Feb 09 2022 22:31:04 GMT+0800`.
+This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Thu Nov 24 2022 23:34:00 GMT+0800`.
 
 <!-- GITCONTRIBUTOR_END -->
 

@@ -1,6 +1,6 @@
 {
   "name": "nodeinstall",
-  "version": "0.1.6",
+  "version": "1.0.0",
   "description": "",
   "dependencies": {
     "adm-zip": "^0.5.9",

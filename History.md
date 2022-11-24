@@ -1,4 +1,14 @@
 
+1.0.0 / 2022-11-24
+==================
+
+**features**
+  * [[`566708e`](http://github.com/cnpm/nodeinstall/commit/566708eeb0bf7fd3b567d71b6693267b0fe642ec)] - 📦 NEW: Drop Node.js < 14 support (#24) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`5311ab2`](http://github.com/cnpm/nodeinstall/commit/5311ab26b6856f8e5ead459aebedd11823620533)] - feat: support win32 platform (#23) (Richard <<richardo2016@gmail.com>>)
+
+**others**
+  * [[`7f2084b`](http://github.com/cnpm/nodeinstall/commit/7f2084b8094bae09736effeb9bad40ba8552ad39)] - Create codeql.yml (fengmk2 <<fengmk2@gmail.com>>)
+
 0.1.6 / 2022-08-03
 ==================
 
