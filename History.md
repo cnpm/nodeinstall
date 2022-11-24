@@ -1,4 +1,10 @@
 
+1.0.1 / 2022-11-24
+==================
+
+**features**
+  * [[`8894a77`](http://github.com/cnpm/nodeinstall/commit/8894a7795c9b64fede5979d1d8ffc89ca3f0007c)] - feat: support arm64 for apple silicon (#25) (Richard <<richardo2016@gmail.com>>)
+
 1.0.0 / 2022-11-24
 ==================
 
