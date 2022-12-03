@@ -2,7 +2,6 @@
 
 'use strict';
 
-const co = require('co');
 const install = require('../lib/install');
 const program = require('commander');
 const only = require('only');
@@ -26,19 +25,19 @@ if (!(program.args[0] || program.installNightly)) {
   process.exit(1);
 }
 
-co(function* () {
-  const options = only(program, [
-    'installNode',
-    'installNoderc',
-    'installAlinode',
-    'installNsolid',
-    'installNightly',
-    'china',
-    'cache',
-    'distUrl',
-  ]);
-  options.version = program.args[0];
-  yield install(options);
+const options = only(program, [
+  'installNode',
+  'installNoderc',
+  'installAlinode',
+  'installNsolid',
+  'installNightly',
+  'china',
+  'cache',
+  'distUrl',
+]);
+options.version = program.args[0];
+install(options).then(() => {
+  process.exit(0);
 }).catch(err => {
   console.error(err.stack);
   process.exit(1);

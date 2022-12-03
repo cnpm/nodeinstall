@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
-const rimraf = require('rimraf');
+const fsPromises = require('fs/promises');
 const execSync = require('child_process').execSync;
 const coffee = require('coffee');
 
@@ -13,21 +13,21 @@ const nodeinstall = path.join(__dirname, '../bin/nodeinstall');
 
 describe('test/install_nsolid.test.js', function() {
   let cwd;
-  beforeEach(function() {
+  beforeEach(async function() {
     if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
+      await fsPromises.rm(path.join(cwd, 'node_modules'), { recursive: true, force: true });
     }
   });
-  afterEach(function() {
+  afterEach(async function() {
     if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
+      await fsPromises.rm(path.join(cwd, 'node_modules'), { recursive: true, force: true });
     }
   });
 
-  it('should install-nsolid', function* () {
+  it('should install-nsolid', async function() {
     cwd = path.join(fixtures, 'install-nsolid');
 
-    yield coffee
+    await coffee
       .fork(nodeinstall, [ '--install-nsolid', '1.3.2' ], { cwd })
       .debug()
       .expect('code', 0)

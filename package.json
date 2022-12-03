@@ -5,11 +5,9 @@
   "dependencies": {
     "adm-zip": "^0.5.9",
     "bytes": "^2.5.0",
-    "co": "^4.6.0",
     "commander": "^2.9.0",
     "debug": "^2.6.6",
     "extend": "^3.0.1",
-    "mkdirp": "^0.5.1",
     "node-nightly-version": "^1.0.6",
     "only": "^0.0.2",
     "progress": "^2.0.0",
@@ -23,8 +21,7 @@
     "egg-bin": "^5.5.0",
     "eslint": "^8.28.0",
     "eslint-config-egg": "^12.1.0",
-    "git-contributor": "^1.0.10",
-    "rimraf": "^2.6.1"
+    "git-contributor": "^1.0.10"
   },
   "main": "lib/index.js",
   "files": [

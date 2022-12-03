@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
-const rimraf = require('rimraf');
+const fsPromises = require('fs/promises');
 const coffee = require('coffee');
 const execSync = require('child_process').execSync;
 
@@ -25,21 +25,21 @@ function getEnv(nodeBinPath) {
 
 describe('test/install_node_win32.test.js', function() {
   let cwd = path.join(fixtures, 'install-node');
-  beforeEach(function() {
+  beforeEach(async function() {
     if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
+      await fsPromises.rm(path.join(cwd, 'node_modules'), { recursive: true, force: true });
     }
   });
-  afterEach(function() {
+  afterEach(async function() {
     if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
+      await fsPromises.rm(path.join(cwd, 'node_modules'), { recursive: true, force: true });
     }
   });
 
-  it('should install node', function* () {
+  it('should install node', async function() {
     cwd = path.join(fixtures, 'install-node');
     // zip file for windows provided started from nodejs 6.2.2
-    yield coffee
+    await coffee
       .fork(nodeinstall, [ '6.2.2' ], { cwd })
       .debug()
       .expect('code', 0)
@@ -57,9 +57,9 @@ describe('test/install_node_win32.test.js', function() {
     assert(_trimEOL(execSync(`\"${npmBinPath}\" -v`, { env: getEnv(nodeBinPath) }).toString()) === '3.9.5');
   });
 
-  it('should install noderc', function* () {
+  it('should install noderc', async function() {
     cwd = path.join(fixtures, 'install-node');
-    yield coffee
+    await coffee
       .fork(nodeinstall, [ '--install-noderc', '6.9.2-rc.1' ], { cwd })
       .debug()
       .expect('code', 0)
@@ -75,9 +75,9 @@ describe('test/install_node_win32.test.js', function() {
     assert(_trimEOL(execSync(`${nodeBinPath} -v`).toString()) === 'v6.9.2-rc.1');
   });
 
-  it('should install node nightly', function* () {
+  it('should install node nightly', async function() {
     cwd = path.join(fixtures, 'install-node');
-    yield coffee
+    await coffee
       .fork(nodeinstall, [ '--install-nightly' ], { cwd })
       .debug()
       .expect('code', 0)
