@@ -154,11 +154,11 @@ MIT
 
 ## Contributors
 
-|[<img src="https://avatars.githubusercontent.com/u/360661?v=4" width="100px;"/><br/><sub><b>popomore</b></sub>](https://github.com/popomore)<br/>|[<img src="https://avatars.githubusercontent.com/u/156269?v=4" width="100px;"/><br/><sub><b>fengmk2</b></sub>](https://github.com/fengmk2)<br/>|[<img src="https://avatars.githubusercontent.com/u/4635838?v=4" width="100px;"/><br/><sub><b>gemwuu</b></sub>](https://github.com/gemwuu)<br/>|[<img src="https://avatars.githubusercontent.com/u/4013475?v=4" width="100px;"/><br/><sub><b>brucewar</b></sub>](https://github.com/brucewar)<br/>|[<img src="https://avatars.githubusercontent.com/u/6339390?v=4" width="100px;"/><br/><sub><b>richardo2016</b></sub>](https://github.com/richardo2016)<br/>|[<img src="https://avatars.githubusercontent.com/u/25276032?v=4" width="100px;"/><br/><sub><b>lceric</b></sub>](https://github.com/lceric)<br/>|
+|[<img src="https://avatars.githubusercontent.com/u/360661?v=4" width="100px;"/><br/><sub><b>popomore</b></sub>](https://github.com/popomore)<br/>|[<img src="https://avatars.githubusercontent.com/u/156269?v=4" width="100px;"/><br/><sub><b>fengmk2</b></sub>](https://github.com/fengmk2)<br/>|[<img src="https://avatars.githubusercontent.com/u/4635838?v=4" width="100px;"/><br/><sub><b>gemwuu</b></sub>](https://github.com/gemwuu)<br/>|[<img src="https://avatars.githubusercontent.com/u/6339390?v=4" width="100px;"/><br/><sub><b>richardo2016</b></sub>](https://github.com/richardo2016)<br/>|[<img src="https://avatars.githubusercontent.com/u/4013475?v=4" width="100px;"/><br/><sub><b>brucewar</b></sub>](https://github.com/brucewar)<br/>|[<img src="https://avatars.githubusercontent.com/u/25276032?v=4" width="100px;"/><br/><sub><b>lceric</b></sub>](https://github.com/lceric)<br/>|
 | :---: | :---: | :---: | :---: | :---: | :---: |
 
 
-This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Thu Nov 24 2022 23:34:00 GMT+0800`.
+This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Sat Dec 10 2022 01:18:52 GMT+0800`.
 
 <!-- GITCONTRIBUTOR_END -->
 

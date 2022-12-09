@@ -1,4 +1,10 @@
 
+1.1.0 / 2022-12-10
+==================
+
+**others**
+  * [[`3ebb461`](http://github.com/cnpm/nodeinstall/commit/3ebb46124ca69a89be73e541f7d065cdefe9303a)] - refactor: [BREAKING] rm co and use fs native API (#27) (Ke Wu <<gemwuu@163.com>>)
+
 1.0.1 / 2022-11-24
 ==================
 
