@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
-const rimraf = require('rimraf');
+const fsPromises = require('fs/promises');
 const execSync = require('child_process').execSync;
 const coffee = require('coffee');
 const nodeinstall = path.join(__dirname, '../bin/nodeinstall');
@@ -13,23 +13,23 @@ const fixtures = path.join(__dirname, 'fixtures');
 
 describe.skip('test/install_alinode.test.js', function() {
   let cwd;
-  beforeEach(function() {
+  beforeEach(async function() {
     if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
+      await fsPromises.rm(path.join(cwd, 'node_modules'), { recursive: true, force: true });
     }
   });
-  afterEach(function() {
+  afterEach(async function() {
     if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
+      await fsPromises.rm(path.join(cwd, 'node_modules'), { recursive: true, force: true });
     }
   });
 
-  it('should install alinode', function* () {
+  it('should install alinode', async function() {
     this.timeout(1000000);
 
     cwd = path.join(fixtures, 'install-alinode');
 
-    yield coffee
+    await coffee
       .fork(nodeinstall, [ '--install-alinode', '1.4.0' ], { cwd })
       .debug()
       .expect('code', 0)

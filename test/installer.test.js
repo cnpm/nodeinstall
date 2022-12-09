@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const rimraf = require('rimraf');
+const fsPromises = require('fs/promises');
 const assert = require('assert');
 const execSync = require('child_process').execSync;
 const NodeInstaller = require('..').NodeInstaller;
@@ -11,20 +11,20 @@ const getDistUrl = require('./utils').getDistUrl;
 
 describe('test/installer.test.js', function() {
   let cwd;
-  beforeEach(function() {
+  beforeEach(async function() {
     if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
+      await fsPromises.rm(path.join(cwd, 'node_modules'), { recursive: true, force: true });
     }
   });
-  afterEach(function() {
+  afterEach(async function() {
     if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
+      await fsPromises.rm(path.join(cwd, 'node_modules'), { recursive: true, force: true });
     }
   });
 
   describe('unsafeVersions', function() {
 
-    it('should match unsafeVersions', function* () {
+    it('should match unsafeVersions', async function() {
       cwd = path.join(fixtures, 'install-node');
       const nodeBinPath = path.join(cwd, 'node_modules/.bin/node');
       const installer = new NodeInstaller({
@@ -35,7 +35,7 @@ describe('test/installer.test.js', function() {
           '>= 1.0.0 < 4.4.4': '4.5.0',
         },
       });
-      yield installer.install();
+      await installer.install();
       assert(execSync(`${nodeBinPath} -v`).toString() === 'v4.5.0\n');
     });
   });

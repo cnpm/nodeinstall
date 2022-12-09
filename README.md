@@ -83,12 +83,9 @@ Also support
 ## API
 
 ```js
-const co = require('co');
 const install = require('nodeinstall').install;
-co(function* () {
-  yield install({
-    version: '^18.0.0',
-  });
+await install({
+  version: '^18.0.0',
 });
 ```
 

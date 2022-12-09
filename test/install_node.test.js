@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
-const rimraf = require('rimraf');
+const fsPromises = require('fs/promises');
 const coffee = require('coffee');
 const execSync = require('child_process').execSync;
 
@@ -13,20 +13,20 @@ const nodeinstall = path.join(__dirname, '../bin/nodeinstall');
 
 describe('test/install_node.test.js', function() {
   let cwd;
-  beforeEach(function() {
+  beforeEach(async function() {
     if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
+      await fsPromises.rm(path.join(cwd, 'node_modules'), { recursive: true, force: true });
     }
   });
-  afterEach(function() {
+  afterEach(async function() {
     if (cwd) {
-      rimraf.sync(path.join(cwd, 'node_modules'));
+      // await fsPromises.rm(path.join(cwd, 'node_modules'), { recursive: true, force: true });
     }
   });
 
-  it('should install node', function* () {
+  it('should install node', async function() {
     cwd = path.join(fixtures, 'install-node');
-    yield coffee
+    await coffee
       .fork(nodeinstall, [ '4.0.0' ], { cwd })
       .debug()
       .expect('code', 0)
@@ -45,9 +45,9 @@ describe('test/install_node.test.js', function() {
     assert(execSync(`${npmBinPath} -v`).toString() === '2.14.2\n');
   });
 
-  it('should install noderc', function* () {
+  it('should install noderc', async function() {
     cwd = path.join(fixtures, 'install-node');
-    yield coffee
+    await coffee
       .fork(nodeinstall, [ '--install-noderc', '6.0.0-rc.3' ], { cwd })
       .debug()
       .expect('code', 0)
@@ -66,9 +66,9 @@ describe('test/install_node.test.js', function() {
   });
 
 
-  it('should install node nightly', function* () {
+  it('should install node nightly', async function() {
     cwd = path.join(fixtures, 'install-node');
-    yield coffee
+    await coffee
       .fork(nodeinstall, [ '--install-nightly' ], { cwd })
       .debug()
       .expect('code', 0)
