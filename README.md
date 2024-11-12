@@ -163,5 +163,5 @@ This project follows the git-contributor [spec](https://github.com/xudafeng/git-
 <!-- GITCONTRIBUTOR_END -->
 
 
-[Alinode]: http://alinode.aliyun.com/
+[Alinode]: https://www.aliyun.com/product/nodejs
 [NSolid]: https://nodesource.com/products/nsolid/
