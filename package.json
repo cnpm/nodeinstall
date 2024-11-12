@@ -7,7 +7,6 @@
     "bytes": "^2.5.0",
     "commander": "^2.9.0",
     "debug": "^2.6.6",
-    "extend": "^3.0.1",
     "node-nightly-version": "^1.0.6",
     "only": "^0.0.2",
     "progress": "^2.0.0",
