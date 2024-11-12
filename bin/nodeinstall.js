@@ -6,7 +6,6 @@ const install = require('../lib/install');
 const program = require('commander');
 const only = require('only');
 
-
 program
   .version(require('../package.json').version)
   .usage('[options] version')
