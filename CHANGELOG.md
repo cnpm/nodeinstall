@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/cnpm/nodeinstall/compare/v1.1.2...v1.2.0) (2024-11-12)
+
+
+### Features
+
+* use spread operator instead of Object.assign() ([#29](https://github.com/cnpm/nodeinstall/issues/29)) ([f9d06fc](https://github.com/cnpm/nodeinstall/commit/f9d06fccecb7dd39bd2fad2fc3cfeeb46157db36))
+
 ## [1.1.2](https://github.com/cnpm/nodeinstall/compare/v1.1.1...v1.1.2) (2024-11-12)
 
 
